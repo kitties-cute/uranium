@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>URANIUM235.vercel.app</title>
     <link rel="icon" type="image/png" href="https://uranium235.vercel.app/u.png">
-    <script src="/js/auth.js"></script>
+    <script defer src="/js/auth.js"></script>
 
     <style type="text/css">
 
@@ -42,6 +41,13 @@
             clear: both;
             height: 0;
             overflow: hidden;
+        }
+
+        /* MESSAGES */
+        .auth-message {
+            margin-top: 6px;
+            font-size: 11px;
+            text-align: center;
         }
 
         /* TOP NAVIGATION */
@@ -852,11 +858,12 @@
                 <a href="#devices">Platforms</a>
             </div>
 
-            <form id="login" action="/login" method="post">
-                <input type="text" name="username" placeholder="Username" />
-                <input type="password" name="password" placeholder="Password" />
+            <form id="login" action="/api/login" method="post">
+                <input id="login-username" type="text" name="username" placeholder="Username" />
+                <input id="login-password" type="password" name="password" placeholder="Password" />
                 <input class="login-button" type="submit" value="Log In" />
                 <a id="forgot" href="/forgot-password">Forgot Username/Password?</a>
+                <div id="login-message" class="auth-message"></div>
             </form>
 
             <div class="clear"></div>
@@ -881,20 +888,20 @@
             <div id="signup">
                 <h1>SIGN UP AND START HAVING FUN!</h1>
 
-                <form action="/signup" method="post">
+                <form id="signup-form" action="/api/signup" method="post">
 
                     <div class="signup-field">
-                        <input type="text" name="username" maxlength="20"
+                        <input id="signup-username" type="text" name="username" maxlength="20"
                                placeholder="Username (don't use your real name)" />
                     </div>
 
                     <div class="signup-field">
-                        <input type="password" name="password" maxlength="128"
+                        <input id="signup-password" type="password" name="password" maxlength="128"
                                placeholder="Password (minimum length 8)" />
                     </div>
 
                     <div class="signup-field">
-                        <input type="password" name="confirm_password" maxlength="128"
+                        <input id="signup-confirm" type="password" name="confirm_password" maxlength="128"
                                placeholder="Confirm Password" />
                     </div>
 
@@ -902,23 +909,23 @@
 
                     <div class="signup-field birthday">
 
-                        <select name="birth_month">
+                        <select name="birthday_month">
                             <option value="">Month</option>
-                            <option>January</option>
-                            <option>February</option>
-                            <option>March</option>
-                            <option>April</option>
-                            <option>May</option>
-                            <option>June</option>
-                            <option>July</option>
-                            <option>August</option>
-                            <option>September</option>
-                            <option>October</option>
-                            <option>November</option>
-                            <option>December</option>
+                            <option value="01">January</option>
+                            <option value="02">February</option>
+                            <option value="03">March</option>
+                            <option value="04">April</option>
+                            <option value="05">May</option>
+                            <option value="06">June</option>
+                            <option value="07">July</option>
+                            <option value="08">August</option>
+                            <option value="09">September</option>
+                            <option value="10">October</option>
+                            <option value="11">November</option>
+                            <option value="12">December</option>
                         </select>
 
-                        <select name="birth_day">
+                        <select name="birthday_day">
                             <option value="">Day</option>
                             <script type="text/javascript">
                                 for (var d = 1; d <= 31; d++) {
@@ -929,7 +936,7 @@
                             </script>
                         </select>
 
-                        <select name="birth_year">
+                        <select name="birthday_year">
                             <option value="">Year</option>
                             <script type="text/javascript">
                                 for (var y = 2016; y >= 1900; y--) {
@@ -959,6 +966,7 @@
                     </div>
 
                     <input class="signup-button" type="submit" value="Sign Up" />
+                    <div id="signup-message" class="auth-message"></div>
 
                 </form>
             </div>
