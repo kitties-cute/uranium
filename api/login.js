@@ -1,136 +1,47 @@
+const supabase = require("../lib/supabase");
+const {
+  verifyPassword,
+  createSession,
+  setSessionCookie
+} = require("../lib/auth");
 
-module.exports = async (req, res) => {
-  // Only allow POST requests
+module.exports = async function handler(req, res) {
   if (req.method !== "POST") {
-    res.setHeader("Allow", "POST");
-    return res.status(405).json({ error: "You cannot use anything else than POST." });
+    return res.status(405).json({ error: "Method not allowed." });
   }
 
-  res.setHeader("Cache-Control", "no-store");
-
   try {
-    const {
-      SUPABASE_URL,
-      SUPABASE_SECRET_KEY,
-      SUPABASE_PUBLISHABLE_KEY
-    } = process.env;
+    const username = String(req.body?.username || "").trim().toLowerCase();
+    const password = req.body?.password;
 
-    if (
-      !SUPABASE_URL ||
-      !SUPABASE_SECRET_KEY ||
-      !SUPABASE_PUBLISHABLE_KEY
-    ) {
-      return res.status(500).json({
-        error: "Server configuration error"
-      });
+    if (!username || typeof password !== "string" || password.length > 128) {
+      return res.status(400).json({ error: "Invalid username or password." });
     }
 
-    const { username, password } = req.body || {};
+    const { data: user, error } = await supabase
+      .from("uranium_users")
+      .select("id, username, password_hash")
+      .eq("username", username)
+      .maybeSingle();
 
-    if (
-      typeof username !== "string" ||
-      typeof password !== "string" ||
-      username.length < 3 ||
-      username.length > 20 ||
-      password.length === 0 ||
-      password.length > 128
-    ) {
-      return res.status(400).json({
-        error: "Please enter a valid username and password."
-      });
+    if (error) throw error;
+
+    if (!user || !(await verifyPassword(password, user.password_hash))) {
+      return res.status(401).json({ error: "Incorrect username or password." });
     }
 
-    const cleanUsername = username.toLowerCase();
-
-    // Find the account's user ID from the profiles table
-    const profileUrl = new URL(
-      "/rest/v1/profiles",
-      SUPABASE_URL
-    );
-
-    profileUrl.searchParams.set(
-      "username",
-      `eq.${cleanUsername}`
-    );
-    profileUrl.searchParams.set("select", "id");
-
-    const profileResponse = await fetch(profileUrl, {
-      headers: {
-        apikey: SUPABASE_SECRET_KEY,
-        Authorization: `Bearer ${SUPABASE_SECRET_KEY}`
-      }
-    });
-
-    if (!profileResponse.ok) {
-      throw new Error("Profile lookup failed");
-    }
-
-    const profiles = await profileResponse.json();
-
-    if (!profiles.length) {
-      return res.status(401).json({
-        error: "Invalid username or password."
-      });
-    }
-
-    // Retrieve the email associated with that user ID
-    const userResponse = await fetch(
-      `${SUPABASE_URL}/auth/v1/admin/users/${profiles[0].id}`,
-      {
-        headers: {
-          apikey: SUPABASE_SECRET_KEY,
-          Authorization: `Bearer ${SUPABASE_SECRET_KEY}`
-        }
-      }
-    );
-
-    if (!userResponse.ok) {
-      throw new Error("User lookup failed");
-    }
-
-    const userData = await userResponse.json();
-
-    if (!userData.email) {
-      return res.status(401).json({
-        error: "Invalid username or password."
-      });
-    }
-
-    // Sign in using the user's email and password
-    const loginResponse = await fetch(
-      `${SUPABASE_URL}/auth/v1/token?grant_type=password`,
-      {
-        method: "POST",
-        headers: {
-          apikey: SUPABASE_PUBLISHABLE_KEY,
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          email: userData.email,
-          password
-        })
-      }
-    );
-
-    const loginData = await loginResponse.json();
-
-    if (!loginResponse.ok) {
-      return res.status(401).json({
-        error: "Invalid username or password."
-      });
-    }
+    const token = createSession(user.id);
+    setSessionCookie(res, token);
 
     return res.status(200).json({
-      access_token: loginData.access_token,
-      refresh_token: loginData.refresh_token
+      success: true,
+      user: {
+        id: user.id,
+        username: user.username
+      }
     });
-
   } catch (error) {
-    // Do not log passwords, tokens, or secret keys
-    console.error("Login request failed");
-
-    return res.status(500).json({
-      error: "Something went wrong. Please try again."
-    });
+    console.error("Login error:", error.message);
+    return res.status(500).json({ error: "Internal server error." });
   }
 };
