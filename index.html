@@ -6,9 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>URANIUM235.vercel.app</title>
-    <link rel="icon" type="image/png" href="uranium235.vercel.app/u.png">
+    <link rel="icon" type="image/png" href="https://uranium235.vercel.app/u.png">
 
     <style type="text/css">
+
+        /* DESKTOP SCALING */
+
         html {
             zoom: 1.5;
         }
@@ -43,7 +46,7 @@
         /* TOP NAVIGATION */
 
         #top {
-             position: fixed;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
@@ -83,7 +86,7 @@
         }
 
         #nav a {
-            color: #eaf5f8;
+            color: #fff;
             margin: 0 13px;
             font-size: 12px;
         }
@@ -122,7 +125,7 @@
             margin-top: 1px;
         }
 
-        /* HERO / SIGNUP */
+        /* HERO */
 
         #hero {
             height: 66.6667vh;
@@ -160,7 +163,7 @@
             border: 0;
         }
 
-        /* ROBLOX-STYLE TAGLINE */
+        /* TAGLINE */
 
         #brand .slogan {
             display: block;
@@ -187,7 +190,7 @@
             text-shadow: 1px 1px 2px #333;
         }
 
-        /* SIGNUP BOX */
+        /* SIGNUP */
 
         #signup {
             position: absolute;
@@ -266,7 +269,7 @@
             background: #07994e;
         }
 
-        /* ABOUT SECTION */
+        /* ABOUT */
 
         #about {
             height: 66.6667vh;
@@ -435,9 +438,10 @@
             color: #aaa;
         }
 
-        /* RESPONSIVE */
+        /* TABLET */
 
-        @media screen and (max-width: 980px) {
+        @media screen and (max-width: 980px) and (min-width: 651px) {
+
             #top-inner,
             #hero-inner,
             #about-inner,
@@ -463,106 +467,368 @@
             }
         }
 
+        /* MOBILE FIX */
+
         @media screen and (max-width: 650px) {
-            #top {
-                height: auto;
-                min-height: 40px;
+
+            /* Remove desktop zoom on phones */
+
+            html {
+                zoom: 1;
             }
 
-            #top-inner {
-                height: auto;
+            html, body {
+                width: 100%;
+                max-width: 100%;
+                overflow-x: hidden;
+                margin: 0;
+                padding: 0;
             }
 
-            #nav {
-                float: none;
-            }
-
-            #login {
-                float: none;
-                padding: 5px 0 8px 0;
-            }
-
-            #hero,
-            #hero-inner {
-                height: 650px;
-            }
-
-            #brand {
-                top: 70px;
-                left: 10px;
-                width: 90%;
-            }
-
-            #brand img {
-                max-width: 220px;
-            }
-
-            #brand .slogan {
-                width: 210px;
+            body {
                 font-size: 14px;
             }
 
-            #signup {
-                top: 230px;
-                left: 50%;
-                right: auto;
-                margin-left: -147px;
-                width: 260px;
+            * {
+                box-sizing: border-box;
+            }
+
+            /* MOBILE NAVIGATION */
+
+            #top {
+                position: relative;
+                width: 100%;
+                height: auto;
+                min-height: 0;
+                background: rgba(65, 65, 65, 0.82);
+            }
+
+            #top-inner {
+                width: 100%;
+                height: auto;
+                margin: 0;
+                padding: 0;
+            }
+
+            #mini-logo {
+                float: left;
+                width: 48px;
+                height: 49px;
+                padding: 7px 0 0 9px;
+            }
+
+            #mini-logo img {
+                max-width: 34px;
+                max-height: 34px;
+            }
+
+            #nav {
+                float: right;
+                height: 49px;
+                line-height: 49px;
+                white-space: nowrap;
+            }
+
+            #nav a {
+                display: inline-block;
+                margin: 0 9px;
+                color: #fff;
+                font-size: 14px;
+            }
+
+            /* LOGIN ROW */
+
+            #login {
+                float: none;
+                clear: both;
+                display: block;
+                width: 100%;
+                height: auto;
+                padding: 8px 10px 9px 10px;
+                margin: 0;
+                white-space: normal;
+                border-top: 1px solid rgba(255,255,255,0.15);
+                overflow: hidden;
+            }
+
+            #login input {
+                float: left;
+                width: 36%;
+                height: 38px;
+                padding: 6px;
+                margin: 0 1% 0 0;
+                font-size: 14px;
+                box-sizing: border-box;
+            }
+
+            #login .login-button {
+                width: 25%;
+                height: 38px;
+                margin: 0;
+                padding: 4px;
+                font-size: 13px;
+            }
+
+            #forgot {
+                clear: both;
+                display: block;
+                padding-top: 7px;
+                text-align: right;
+                font-size: 11px;
+                white-space: normal;
+            }
+
+            /* MOBILE HERO */
+
+            #hero {
+                width: 100%;
+                height: 800px;
+                min-height: 800px;
+                margin: 0;
+                background-position: center top;
+                background-size: auto 100%;
+                border-bottom: 4px solid #d8d8d8;
+            }
+
+            #hero-inner {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+            }
+
+            /* MOBILE BRAND */
+
+            #brand {
+                position: absolute;
+                top: 25px;
+                left: 0;
+                width: 100%;
+                padding: 0 12px;
+                text-align: center;
+            }
+
+            #brand img {
+                display: block;
+                width: auto;
+                max-width: 85%;
+                max-height: 115px;
+                height: auto;
+                margin: 0 auto;
+            }
+
+            #brand .slogan {
+                display: block;
+                width: 90%;
+                max-width: 340px;
+                margin: 8px auto 0 auto;
+                padding: 9px 8px;
+                font-size: 16px;
+                text-align: center;
             }
 
             #game-credit {
                 display: none;
             }
 
-            #about,
-            #about-inner {
+            /* MOBILE SIGNUP */
+
+            #signup {
+                position: absolute;
+                top: 235px;
+                left: 50%;
+                right: auto;
+                width: calc(100% - 24px);
+                max-width: 390px;
+                margin: 0;
+                padding: 16px 12px;
+                transform: translateX(-50%);
+                background: rgba(255,255,255,0.97);
+                border: 1px solid #d4d4d4;
+                box-sizing: border-box;
+            }
+
+            #signup h1 {
+                margin: 0 0 15px 0;
+                font-size: 17px;
+                line-height: 23px;
+            }
+
+            .signup-field {
+                width: 100%;
+                margin-bottom: 9px;
+            }
+
+            .signup-field input,
+            .signup-field select {
+                display: block;
+                width: 100%;
+                height: 43px;
+                padding: 7px 9px;
+                font-size: 15px;
+                box-sizing: border-box;
+            }
+
+            .birthday-label {
+                margin: 5px 0 7px 0;
+                font-size: 13px;
+            }
+
+            .birthday {
+                display: flex;
+                width: 100%;
+                gap: 5px;
+            }
+
+            .birthday select {
+                flex: 1;
+                min-width: 0;
+                width: 33.333%;
+                height: 43px;
+                padding: 5px 3px;
+                font-size: 13px;
+                box-sizing: border-box;
+            }
+
+            .gender select {
+                width: 100%;
+                height: 43px;
+            }
+
+            .terms {
+                margin: 13px 0;
+                font-size: 11px;
+                line-height: 16px;
+            }
+
+            .signup-button {
+                width: 100%;
+                height: 43px;
+                font-size: 15px;
+            }
+
+            /* MOBILE ABOUT */
+
+            #about {
+                width: 100%;
                 height: auto;
+                min-height: 0;
+                padding: 0;
+            }
+
+            #about-inner {
+                width: 100%;
+                height: auto;
+                margin: 0;
             }
 
             #about-art {
                 float: none;
                 width: 100%;
-                height: 180px;
+                height: 230px;
+                background-position: center center;
+                background-size: cover;
             }
 
             #about-copy {
                 float: none;
-                width: auto;
-                padding: 28px 20px;
+                width: 100%;
+                padding: 30px 22px 35px 22px;
             }
 
+            #about-copy h2 {
+                font-size: 23px;
+            }
+
+            #about-copy p {
+                font-size: 15px;
+                line-height: 24px;
+            }
+
+            /* MOBILE GALLERY */
+
             #gallery {
+                width: 100%;
                 height: auto;
+                min-height: 0;
+            }
+
+            #gallery-inner {
+                width: 100%;
+                height: auto;
+                margin: 0;
             }
 
             .tile {
                 float: none;
+                display: block;
                 width: 100%;
-                height: 115px;
-                margin: 0 0 2px 0;
+                height: 160px;
+                margin: 0;
             }
 
             .tile-caption {
-                padding-top: 43px;
+                padding: 65px 10px 0 10px;
+                font-size: 18px;
             }
 
+            /* MOBILE DEVICES */
+
             #devices {
+                width: 100%;
                 height: auto;
+                min-height: 0;
+                padding: 38px 12px;
+            }
+
+            #devices h2 {
+                font-size: 21px;
+                line-height: 27px;
             }
 
             #devices p {
-                width: 90%;
+                width: 100%;
+                max-width: 450px;
+                font-size: 14px;
+                line-height: 22px;
             }
 
             #device-row {
                 width: 100%;
+                margin: 25px auto 0 auto;
             }
 
             .device {
+                float: none;
                 width: 100%;
-                height: 100px;
+                height: 115px;
+                padding-top: 10px;
+            }
+
+            .device-icon {
+                width: 100px;
+                height: 65px;
+                line-height: 65px;
+                font-size: 25px;
+            }
+
+            #badges {
+                margin-top: 20px;
+            }
+
+            /* MOBILE FOOTER */
+
+            #footer {
+                width: 100%;
+                padding: 25px 10px;
+                line-height: 24px;
+            }
+
+            #footer a {
+                display: inline-block;
+                margin: 3px 7px;
             }
         }
+
     </style>
 </head>
 
