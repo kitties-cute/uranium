@@ -7,6 +7,21 @@
     <title>URANIUM235.vercel.app</title>
     <link rel="icon" type="image/png" href="https://uranium235.vercel.app/u.png">
     <script defer src="/js/auth.js"></script>
+    <script>
+(async () => {
+  try {
+    const response = await fetch('/api/me', {
+      credentials: 'same-origin'
+    });
+
+    if (response.ok) {
+      window.location.replace('/home');
+    }
+  } catch (error) {
+    console.error('Login check failed:', error);
+  }
+})();
+</script>
 
     <style type="text/css">
 
