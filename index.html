@@ -2,13 +2,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>URANIUM - Sign Up</title>
-    <link rel="icon" type="image/png" href="https://uranium235.vercel.app/u.png" />
+    <title>URANIUM235.vercel.app</title>
+    <link rel="icon" type="image/png" href="https://uranium235.vercel.app/u.png">
 
     <style type="text/css">
+
+        /* DESKTOP SCALING */
+
         html {
             zoom: 1.5;
         }
@@ -40,7 +43,7 @@
             overflow: hidden;
         }
 
-        /* NAVIGATION */
+        /* TOP NAVIGATION */
 
         #top {
             position: fixed;
@@ -49,8 +52,8 @@
             width: 100%;
             height: 40px;
             background: #555;
-            background: rgba(65,65,65,0.72);
-            border-bottom: 1px solid rgba(255,255,255,0.15);
+            background: rgba(65, 65, 65, 0.72);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
             color: #fff;
             z-index: 1000;
         }
@@ -83,7 +86,7 @@
         }
 
         #nav a {
-            color: #eaf5f8;
+            color: #fff;
             margin: 0 13px;
             font-size: 12px;
         }
@@ -102,7 +105,6 @@
             border: 1px solid #b9c6ca;
             font-family: Arial;
             font-size: 11px;
-            box-sizing: content-box;
         }
 
         #login .login-button {
@@ -123,14 +125,6 @@
             margin-top: 1px;
         }
 
-        .auth-message {
-            margin: 5px 0;
-            color: #b3261e;
-            font-size: 11px;
-            line-height: 15px;
-            white-space: normal;
-        }
-
         /* HERO */
 
         #hero {
@@ -143,6 +137,7 @@
             background-size: cover;
             border-bottom: 4px solid #d8d8d8;
             position: relative;
+            margin-top: 0;
         }
 
         #hero-inner {
@@ -168,20 +163,22 @@
             border: 0;
         }
 
+        /* TAGLINE */
+
         #brand .slogan {
             display: block;
             width: 340px;
             margin: 5px 0 0 10px;
             padding: 7px 10px;
             background: #263238;
-            background: rgba(20,25,28,0.82);
+            background: rgba(20, 25, 28, 0.82);
             border-left: 3px solid #999;
             color: #fff;
+            font-family: Arial, Helvetica, sans-serif;
             font-size: 17px;
             font-weight: normal;
             letter-spacing: 0.2px;
             text-shadow: none;
-            box-sizing: border-box;
         }
 
         #game-credit {
@@ -200,15 +197,14 @@
             right: 18px;
             top: 82px;
             width: 260px;
-            padding: 17px 16px 15px;
+            padding: 17px 16px 15px 16px;
             background: #fff;
             background: rgba(255,255,255,0.96);
             border: 1px solid #d4d4d4;
-            box-sizing: content-box;
         }
 
         #signup h1 {
-            margin: 0 0 13px;
+            margin: 0 0 13px 0;
             color: #777;
             text-align: center;
             font-size: 16px;
@@ -230,6 +226,25 @@
             font-family: Arial, Helvetica, sans-serif;
             font-size: 12px;
             box-sizing: border-box;
+        }
+
+        .birthday-label {
+            color: #888;
+            font-size: 11px;
+            margin: 2px 0 5px 0;
+        }
+
+        .birthday select {
+            width: 32%;
+            height: 30px;
+            padding: 4px;
+            border: 1px solid #c9c9c9;
+            background: #fff;
+            color: #666;
+        }
+
+        .gender select {
+            width: 100%;
         }
 
         .terms {
@@ -288,7 +303,7 @@
         }
 
         #about-copy h2 {
-            margin: 0 0 13px;
+            margin: 0 0 13px 0;
             text-align: center;
             font-size: 25px;
             font-weight: normal;
@@ -310,7 +325,6 @@
             min-height: 180px;
             background: #fff;
             border-bottom: 1px solid #ddd;
-            overflow: hidden;
         }
 
         #gallery-inner {
@@ -337,7 +351,7 @@
         }
 
         .tile-caption {
-            padding: 72px 10px 0;
+            padding: 72px 10px 0 10px;
             color: #fff;
             text-align: center;
             font-size: 18px;
@@ -349,14 +363,14 @@
         #devices {
             height: 66.6667vh;
             min-height: 400px;
-            padding: 48px 0 35px;
+            padding: 48px 0 35px 0;
             text-align: center;
             background: #fff;
             box-sizing: border-box;
         }
 
         #devices h2 {
-            margin: 0 0 12px;
+            margin: 0 0 12px 0;
             color: #777;
             font-size: 21px;
             font-weight: normal;
@@ -372,7 +386,7 @@
 
         #device-row {
             width: 850px;
-            margin: 35px auto 0;
+            margin: 35px auto 0 auto;
         }
 
         .device {
@@ -387,7 +401,7 @@
         .device-icon {
             width: 115px;
             height: 75px;
-            margin: 0 auto 10px;
+            margin: 0 auto 10px auto;
             border: 2px solid #bbb;
             background: #f1f1f1;
             line-height: 75px;
@@ -413,7 +427,7 @@
         /* FOOTER */
 
         #footer {
-            padding: 30px 0 20px;
+            padding: 30px 0 20px 0;
             text-align: center;
             color: #aaa;
             font-size: 11px;
@@ -424,9 +438,10 @@
             color: #aaa;
         }
 
-        /* TABLET / SMALL DESKTOP */
+        /* TABLET */
 
-        @media screen and (max-width: 980px) {
+        @media screen and (max-width: 980px) and (min-width: 651px) {
+
             #top-inner,
             #hero-inner,
             #about-inner,
@@ -452,165 +467,374 @@
             }
         }
 
-        /* MOBILE */
+        /* MOBILE FIX */
 
         @media screen and (max-width: 650px) {
+
+            /* Remove desktop zoom on phones */
+
             html {
                 zoom: 1;
             }
 
+            html, body {
+                width: 100%;
+                max-width: 100%;
+                overflow-x: hidden;
+                margin: 0;
+                padding: 0;
+            }
+
+            body {
+                font-size: 14px;
+            }
+
+            * {
+                box-sizing: border-box;
+            }
+
+            /* MOBILE NAVIGATION */
+
             #top {
                 position: relative;
+                width: 100%;
                 height: auto;
-                min-height: 40px;
-                background: rgba(65,65,65,0.9);
+                min-height: 0;
+                background: rgba(65, 65, 65, 0.82);
             }
 
             #top-inner {
-                width: 94%;
+                width: 100%;
                 height: auto;
+                margin: 0;
+                padding: 0;
             }
 
             #mini-logo {
                 float: left;
+                width: 48px;
+                height: 49px;
+                padding: 7px 0 0 9px;
+            }
+
+            #mini-logo img {
+                max-width: 34px;
+                max-height: 34px;
             }
 
             #nav {
                 float: right;
-                height: 40px;
-                line-height: 40px;
+                height: 49px;
+                line-height: 49px;
+                white-space: nowrap;
             }
 
             #nav a {
-                margin: 0 5px;
-                font-size: 11px;
+                display: inline-block;
+                margin: 0 9px;
+                color: #fff;
+                font-size: 14px;
             }
 
+            /* LOGIN ROW */
+
             #login {
-                clear: both;
                 float: none;
-                padding: 7px 0 8px;
+                clear: both;
+                display: block;
+                width: 100%;
+                height: auto;
+                padding: 8px 10px 9px 10px;
+                margin: 0;
                 white-space: normal;
-                text-align: center;
+                border-top: 1px solid rgba(255,255,255,0.15);
+                overflow: hidden;
             }
 
             #login input {
-                width: 27%;
-                margin: 2px 1px;
+                float: left;
+                width: 36%;
+                height: 38px;
+                padding: 6px;
+                margin: 0 1% 0 0;
+                font-size: 14px;
                 box-sizing: border-box;
             }
 
             #login .login-button {
-                width: auto;
+                width: 25%;
+                height: 38px;
+                margin: 0;
+                padding: 4px;
+                font-size: 13px;
             }
 
             #forgot {
-                text-align: center;
+                clear: both;
+                display: block;
+                padding-top: 7px;
+                text-align: right;
+                font-size: 11px;
+                white-space: normal;
             }
 
-            #hero,
-            #hero-inner {
-                height: 650px;
-                min-height: 650px;
+            /* MOBILE HERO */
+
+            #hero {
+                width: 100%;
+                height: 800px;
+                min-height: 800px;
+                margin: 0;
+                background-position: center top;
+                background-size: auto 100%;
+                border-bottom: 4px solid #d8d8d8;
             }
 
             #hero-inner {
                 width: 100%;
+                height: 100%;
+                margin: 0;
             }
 
+            /* MOBILE BRAND */
+
             #brand {
-                top: 35px;
-                left: 5%;
-                width: 90%;
+                position: absolute;
+                top: 25px;
+                left: 0;
+                width: 100%;
+                padding: 0 12px;
+                text-align: center;
             }
 
             #brand img {
-                max-width: 220px;
-                max-height: 90px;
+                display: block;
+                width: auto;
+                max-width: 85%;
+                max-height: 115px;
+                height: auto;
+                margin: 0 auto;
             }
 
             #brand .slogan {
-                width: 220px;
-                margin-left: 0;
-                font-size: 14px;
-            }
-
-            #signup {
-                top: 210px;
-                left: 50%;
-                right: auto;
-                width: 260px;
-                margin-left: -147px;
+                display: block;
+                width: 90%;
+                max-width: 340px;
+                margin: 8px auto 0 auto;
+                padding: 9px 8px;
+                font-size: 16px;
+                text-align: center;
             }
 
             #game-credit {
                 display: none;
             }
 
-            #about,
-            #about-inner {
+            /* MOBILE SIGNUP */
+
+            #signup {
+                position: absolute;
+                top: 235px;
+                left: 50%;
+                right: auto;
+                width: calc(100% - 24px);
+                max-width: 390px;
+                margin: 0;
+                padding: 16px 12px;
+                transform: translateX(-50%);
+                background: rgba(255,255,255,0.97);
+                border: 1px solid #d4d4d4;
+                box-sizing: border-box;
+            }
+
+            #signup h1 {
+                margin: 0 0 15px 0;
+                font-size: 17px;
+                line-height: 23px;
+            }
+
+            .signup-field {
+                width: 100%;
+                margin-bottom: 9px;
+            }
+
+            .signup-field input,
+            .signup-field select {
+                display: block;
+                width: 100%;
+                height: 43px;
+                padding: 7px 9px;
+                font-size: 15px;
+                box-sizing: border-box;
+            }
+
+            .birthday-label {
+                margin: 5px 0 7px 0;
+                font-size: 13px;
+            }
+
+            .birthday {
+                display: flex;
+                width: 100%;
+                gap: 5px;
+            }
+
+            .birthday select {
+                flex: 1;
+                min-width: 0;
+                width: 33.333%;
+                height: 43px;
+                padding: 5px 3px;
+                font-size: 13px;
+                box-sizing: border-box;
+            }
+
+            .gender select {
+                width: 100%;
+                height: 43px;
+            }
+
+            .terms {
+                margin: 13px 0;
+                font-size: 11px;
+                line-height: 16px;
+            }
+
+            .signup-button {
+                width: 100%;
+                height: 43px;
+                font-size: 15px;
+            }
+
+            /* MOBILE ABOUT */
+
+            #about {
+                width: 100%;
                 height: auto;
                 min-height: 0;
+                padding: 0;
+            }
+
+            #about-inner {
+                width: 100%;
+                height: auto;
+                margin: 0;
             }
 
             #about-art {
                 float: none;
                 width: 100%;
-                height: 180px;
+                height: 230px;
+                background-position: center center;
+                background-size: cover;
             }
 
             #about-copy {
                 float: none;
-                width: auto;
-                padding: 28px 20px;
+                width: 100%;
+                padding: 30px 22px 35px 22px;
             }
 
+            #about-copy h2 {
+                font-size: 23px;
+            }
+
+            #about-copy p {
+                font-size: 15px;
+                line-height: 24px;
+            }
+
+            /* MOBILE GALLERY */
+
             #gallery {
+                width: 100%;
                 height: auto;
                 min-height: 0;
             }
 
             #gallery-inner {
                 width: 100%;
+                height: auto;
+                margin: 0;
             }
 
             .tile {
                 float: none;
+                display: block;
                 width: 100%;
-                height: 115px;
-                margin: 0 0 2px;
+                height: 160px;
+                margin: 0;
             }
 
             .tile-caption {
-                padding-top: 43px;
+                padding: 65px 10px 0 10px;
+                font-size: 18px;
             }
 
+            /* MOBILE DEVICES */
+
             #devices {
+                width: 100%;
                 height: auto;
                 min-height: 0;
-                padding: 35px 0;
+                padding: 38px 12px;
+            }
+
+            #devices h2 {
+                font-size: 21px;
+                line-height: 27px;
             }
 
             #devices p {
-                width: 90%;
+                width: 100%;
+                max-width: 450px;
+                font-size: 14px;
+                line-height: 22px;
             }
 
             #device-row {
                 width: 100%;
+                margin: 25px auto 0 auto;
             }
 
             .device {
                 float: none;
                 width: 100%;
-                height: 100px;
+                height: 115px;
+                padding-top: 10px;
+            }
+
+            .device-icon {
+                width: 100px;
+                height: 65px;
+                line-height: 65px;
+                font-size: 25px;
+            }
+
+            #badges {
+                margin-top: 20px;
+            }
+
+            /* MOBILE FOOTER */
+
+            #footer {
+                width: 100%;
+                padding: 25px 10px;
+                line-height: 24px;
+            }
+
+            #footer a {
+                display: inline-block;
+                margin: 3px 7px;
             }
         }
+
     </style>
 </head>
 
 <body>
 
-    <!-- NAVIGATION -->
+    <!-- TOP NAVIGATION -->
 
     <div id="top">
         <div id="top-inner">
@@ -627,42 +851,28 @@
                 <a href="#devices">Platforms</a>
             </div>
 
-            <form id="login-form">
-                <input
-                    type="text"
-                    id="login-username"
-                    name="username"
-                    maxlength="20"
-                    placeholder="Username"
-                    required
-                />
-                <input
-                    type="password"
-                    id="login-password"
-                    name="password"
-                    placeholder="Password"
-                    required
-                />
+            <form id="login" action="/login" method="post">
+                <input type="text" name="username" placeholder="Username" />
+                <input type="password" name="password" placeholder="Password" />
                 <input class="login-button" type="submit" value="Log In" />
                 <a id="forgot" href="/forgot-password">Forgot Username/Password?</a>
-                <div id="login-message" class="auth-message" role="status"></div>
             </form>
 
             <div class="clear"></div>
         </div>
     </div>
 
-    <!-- HERO -->
+    <!-- HERO SECTION -->
 
     <div id="hero">
         <div id="hero-inner">
 
             <div id="brand">
-                <img
-                    src="https://uranium235.vercel.app/uranium.png"
-                    alt="URANIUM"
-                />
-                <div class="slogan">Powering Radioactivity</div>
+                <img src="https://uranium235.vercel.app/uranium.png" alt="URANIUM" />
+
+                <div class="slogan">
+                    Powering Radioactivity
+                </div>
             </div>
 
             <!-- SIGNUP FORM -->
@@ -670,53 +880,75 @@
             <div id="signup">
                 <h1>SIGN UP AND START HAVING FUN!</h1>
 
-                <form id="signup-form">
+                <form action="/signup" method="post">
 
                     <div class="signup-field">
-                        <input
-                            type="text"
-                            id="signup-username"
-                            name="username"
-                            maxlength="20"
-                            autocomplete="username"
-                            placeholder="Username"
-                            required
-                        />
+                        <input type="text" name="username" maxlength="20"
+                               placeholder="Username (don't use your real name)" />
                     </div>
 
                     <div class="signup-field">
-                        <input
-                            type="email"
-                            id="signup-email"
-                            name="email"
-                            autocomplete="email"
-                            placeholder="Email address"
-                            required
-                        />
+                        <input type="password" name="password" maxlength="128"
+                               placeholder="Password (minimum length 8)" />
                     </div>
 
                     <div class="signup-field">
-                        <input
-                            type="password"
-                            id="signup-password"
-                            name="password"
-                            maxlength="128"
-                            autocomplete="new-password"
-                            placeholder="Password (minimum 8 characters)"
-                            required
-                        />
+                        <input type="password" name="confirm_password" maxlength="128"
+                               placeholder="Confirm Password" />
                     </div>
 
-                    <div class="signup-field">
-                        <input
-                            type="password"
-                            id="signup-confirm"
-                            name="confirm_password"
-                            maxlength="128"
-                            autocomplete="new-password"
-                            placeholder="Confirm password"
-                            required
-                        />
+                    <div class="birthday-label">Birthday</div>
+
+                    <div class="signup-field birthday">
+
+                        <select name="birth_month">
+                            <option value="">Month</option>
+                            <option>January</option>
+                            <option>February</option>
+                            <option>March</option>
+                            <option>April</option>
+                            <option>May</option>
+                            <option>June</option>
+                            <option>July</option>
+                            <option>August</option>
+                            <option>September</option>
+                            <option>October</option>
+                            <option>November</option>
+                            <option>December</option>
+                        </select>
+
+                        <select name="birth_day">
+                            <option value="">Day</option>
+                            <script type="text/javascript">
+                                for (var d = 1; d <= 31; d++) {
+                                    document.write(
+                                        '<option value="' + d + '">' + d + '</option>'
+                                    );
+                                }
+                            </script>
+                        </select>
+
+                        <select name="birth_year">
+                            <option value="">Year</option>
+                            <script type="text/javascript">
+                                for (var y = 2013; y >= 1900; y--) {
+                                    document.write(
+                                        '<option value="' + y + '">' + y + '</option>'
+                                    );
+                                }
+                            </script>
+                        </select>
+
+                    </div>
+
+                    <div class="signup-field gender">
+                        <select name="gender">
+                            <option value="">Gender (optional)</option>
+                            <option value="female">Female</option>
+                            <option value="male">Male</option>
+                            <option value="other">Other</option>
+                            <option value="prefer_not_to_say">Prefer not to say</option>
+                        </select>
                     </div>
 
                     <div class="terms">
@@ -725,13 +957,7 @@
                         <a href="/privacy">Privacy Policy</a>.
                     </div>
 
-                    <input
-                        class="signup-button"
-                        type="submit"
-                        value="Sign Up"
-                    />
-
-                    <div id="signup-message" class="auth-message" role="status"></div>
+                    <input class="signup-button" type="submit" value="Sign Up" />
 
                 </form>
             </div>
@@ -744,7 +970,7 @@
         </div>
     </div>
 
-    <!-- ABOUT -->
+    <!-- ABOUT SECTION -->
 
     <div id="about">
         <div id="about-inner">
@@ -753,6 +979,7 @@
 
             <div id="about-copy">
                 <h2>WHAT IS URANIUM?</h2>
+
                 <p>
                     URANIUM is a place to play, create, and explore with a community.
                     Discover experiences made by players, meet new friends, and revisit
@@ -839,9 +1066,6 @@
         <p>&copy; 2026 URANIUM. A community project.</p>
 
     </div>
-
-    <!-- AUTHENTICATION -->
-    <script type="module" src="/js/auth.js"></script>
 
 </body>
 </html>
