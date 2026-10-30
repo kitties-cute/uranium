@@ -1,21 +1,43 @@
 const supabase = require("../lib/supabase");
+
 const {
   verifyPassword,
   createSession,
-  setSessionCookie
+  setSessionCookie,
+  checkSameOrigin
 } = require("../lib/auth");
 
 module.exports = async function handler(req, res) {
+  res.setHeader("Cache-Control", "no-store");
+
   if (req.method !== "POST") {
-    return res.status(405).json({ error: "Method not allowed." });
+    return res.status(405).json({
+      error: "Method not allowed."
+    });
+  }
+
+  if (!checkSameOrigin(req)) {
+    return res.status(403).json({
+      error: "Invalid request origin."
+    });
   }
 
   try {
-    const username = String(req.body?.username || "").trim().toLowerCase();
+    const username = String(
+      req.body?.username || ""
+    ).trim().toLowerCase();
+
     const password = req.body?.password;
 
-    if (!username || typeof password !== "string" || password.length > 128) {
-      return res.status(400).json({ error: "Invalid username or password." });
+    if (
+      !/^[a-z0-9_]{3,20}$/.test(username) ||
+      typeof password !== "string" ||
+      password.length < 1 ||
+      password.length > 128
+    ) {
+      return res.status(401).json({
+        error: "Incorrect username or password."
+      });
     }
 
     const { data: user, error } = await supabase
@@ -24,13 +46,25 @@ module.exports = async function handler(req, res) {
       .eq("username", username)
       .maybeSingle();
 
-    if (error) throw error;
+    if (error) {
+      console.error("Database login error:", error.message);
 
-    if (!user || !(await verifyPassword(password, user.password_hash))) {
-      return res.status(401).json({ error: "Incorrect username or password." });
+      return res.status(500).json({
+        error: "Could not log in."
+      });
+    }
+
+    if (
+      !user ||
+      !(await verifyPassword(password, user.password_hash))
+    ) {
+      return res.status(401).json({
+        error: "Incorrect username or password."
+      });
     }
 
     const token = createSession(user.id);
+
     setSessionCookie(res, token);
 
     return res.status(200).json({
@@ -40,8 +74,12 @@ module.exports = async function handler(req, res) {
         username: user.username
       }
     });
+
   } catch (error) {
     console.error("Login error:", error.message);
-    return res.status(500).json({ error: "Internal server error." });
+
+    return res.status(500).json({
+      error: "Internal server error."
+    });
   }
 };
