@@ -1,0 +1,11 @@
+{
+  "name": "uranium",
+  "version": "1.0.0",
+  "private": true,
+  "description": "URANIUM - Powering Radioactivity",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.57.0",
+    "bcryptjs": "^3.0.2",
+    "jsonwebtoken": "^9.0.2"
+  }
+}
