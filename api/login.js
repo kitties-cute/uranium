@@ -3,7 +3,7 @@ module.exports = async (req, res) => {
   // Only allow POST requests
   if (req.method !== "POST") {
     res.setHeader("Allow", "POST");
-    return res.status(405).json({ error: "bro you cant do that" });
+    return res.status(405).json({ error: "You cannot use anything else than POST." });
   }
 
   res.setHeader("Cache-Control", "no-store");
