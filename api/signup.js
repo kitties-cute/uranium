@@ -62,6 +62,6 @@ module.exports = async function handler(req, res) {
     });
   } catch (error) {
     console.error("Signup error:", error.message);
-    return res.status(500).json({ error: "Could not create your account." });
+    return res.status(500).json({ error: "Internal server error." });
   }
 };
