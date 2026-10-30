@@ -2,15 +2,21 @@ const supabase = require("../lib/supabase");
 const { getSessionUser } = require("../lib/auth");
 
 module.exports = async function handler(req, res) {
+  res.setHeader("Cache-Control", "no-store");
+
   if (req.method !== "GET") {
-    return res.status(405).json({ error: "Method not allowed." });
+    return res.status(405).json({
+      error: "Method not allowed."
+    });
   }
 
   try {
     const session = getSessionUser(req);
 
     if (!session) {
-      return res.status(401).json({ error: "Not logged in." });
+      return res.status(401).json({
+        error: "Not logged in."
+      });
     }
 
     const { data, error } = await supabase
@@ -19,15 +25,29 @@ module.exports = async function handler(req, res) {
       .eq("id", session.sub)
       .maybeSingle();
 
-    if (error) throw error;
+    if (error) {
+      console.error("Session database error:", error.message);
 
-    if (!data) {
-      return res.status(401).json({ error: "Account not found." });
+      return res.status(500).json({
+        error: "Could not check your session."
+      });
     }
 
-    return res.status(200).json({ user: data });
+    if (!data) {
+      return res.status(401).json({
+        error: "Account not found."
+      });
+    }
+
+    return res.status(200).json({
+      user: data
+    });
+
   } catch (error) {
     console.error("Session error:", error.message);
-    return res.status(500).json({ error: "Internal server error." });
+
+    return res.status(500).json({
+      error: "Could not check your session."
+    });
   }
 };
