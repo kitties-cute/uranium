@@ -160,15 +160,17 @@ a {
     background: none;
     border: none;
     cursor: pointer;
-    padding: 4px;
+    padding: 0;
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 28px;
+    height: 28px;
 }
 
 .nav-settings-btn svg {
-    width: 22px;
-    height: 22px;
+    width: 20px;
+    height: 20px;
     fill: white;
     opacity: 0.9;
     transition: opacity 0.15s;
@@ -181,7 +183,7 @@ a {
 .settings-dropdown {
     display: none;
     position: absolute;
-    top: 36px;
+    top: 34px;
     right: 0;
     background: white;
     border: 1px solid #ccc;
@@ -525,7 +527,7 @@ a {
 
 <body>
 
-<!-- TOP NAVBAR WITH FULL LOGO AND OPPOSITE CORNER SETTINGS -->
+<!-- TOP NAVBAR WITH FULL LOGO AND ALIGNED OPPOSITE CORNER SETTINGS -->
 <nav class="navbar">
     <a href="/home" class="nav-logo-link">
         <img class="nav-logo" src="/uranium.png" alt="URANIUM">
@@ -570,8 +572,8 @@ a {
     <!-- OPPOSITE CORNER SETTINGS GEAR & DROPDOWN -->
     <div class="nav-settings-container" id="nav-settings-container" hidden>
         <button class="nav-settings-btn" id="settings-menu-toggle" aria-label="Settings Menu">
-            <svg viewBox="30 86 24 24">
-                <path class="st2" d="M53,96h-1.2c-0.3-1.3-0.8-2.5-1.5-3.5l0.9-0.9c0.4-0.4,0.4-1,0-1.4l-1.4-1.4c-0.4-0.4-1-0.4-1.4,0l-0.9,0.9c-1-0.7-2.2-1.2-3.5-1.5V87c0-0.6-0.4-1-1-1h-2c-0.6,0-1,0.4-1,1v1.2c-1.3,0.3-2.5,0.8-3.5,1.5l-0.9-0.9c-0.4-0.4-1-0.4-1.4,0l-1.4,1.4c-0.4,0.4-0.4,1,0,1.4l0.9,0.9c-0.7,1-1.2,2.2-1.5,3.5H31c-0.6,0-1,0.4-1,1v2c0,0.6,0.4,1,1,1h1.2c0.3,1.3,0.8,2.5,1.5,3.5l-0.9,0.9c-0.4,0.4-0.4,1,0,1.4l1.4,1.4c0.4,0.4,1,0.4,1.4,0l0.9-0.9c1,0.7,2.2,1.2,3.5,1.5v1.2c0,0.6,0.4,1,1,1h2c0.6,0,1-0.4,1-1v-1.2c1.3-0.3,2.5-0.8,3.5-1.5l0.9,0.9c0.4,0.4,1,0.4,1.4,0l1.4-1.4c0.4-0.4,0.4-1,0-1.4l-0.9-0.9c0.7-1,1.2-2.2,1.5-3.5H53c0.6,0,1-0.4,1-1v-2C54,96.4,53.6,96,53,96z M42,104c-3.3,0-6-2.7-6-6s2.7-6,6-6s6,2.7,6,6S45.3,104,42,104z"/>
+            <svg viewBox="0 0 24 24">
+                <path class="st2" d="M21.3,10h-1.2c-0.3-1.3-0.8-2.5-1.5-3.5l0.9-0.9c0.4-0.4,0.4-1,0-1.4l-1.4-1.4c-0.4-0.4-1-0.4-1.4,0l-0.9,0.9c-1-0.7-2.2-1.2-3.5-1.5V1.1C12,0.5,11.5,0,10.9,0H8.9C8.3,0,7.8,0.5,7.8,1.1v1.2c-1.3,0.3-2.5,0.8-3.5,1.5L3.4,2.9C3,3.3,2.4,3.3,2,2.9L0.6,1.5C0.2,1.1,0.2,0.5,0.6,0.1l0.9,0.9C0.8,2,0.3,3.2,0,4.5H0C0,5.1,0.5,5.6,1.1,5.6h1.2c0.3,1.3,0.8,2.5,1.5,3.5l-0.9,0.9c-0.4,0.4-0.4,1,0,1.4l1.4,1.4c0.4,0.4,1,0.4,1.4,0l0.9-0.9c1,0.7,2.2,1.2,3.5,1.5v1.2c0,0.6,0.5,1.1,1.1,1.1h2c0.6,0,1.1-0.5,1.1-1.1v-1.2c1.3-0.3,2.5-0.8,3.5-1.5l0.9,0.9c0.4,0.4,1,0.4,1.4,0l1.4-1.4c0.4-0.4,0.4-1,0-1.4l-0.9-0.9c0.7-1,1.2-2.2,1.5-3.5h1.2c0.6,0,1.1-0.5,1.1-1.1v-2C22.4,10.5,21.9,10,21.3,10z M12,18c-3.3,0-6-2.7-6-6s2.7-6,6-6s6,2.7,6,6S15.3,18,12,18z"/>
             </svg>
         </button>
         <div class="settings-dropdown" id="settings-dropdown">
@@ -584,7 +586,7 @@ a {
 <!-- PAGE CONTAINER -->
 <div class="page-container">
 
-    <!-- LEFT SIDEBAR WITH OFFICIAL SPRITESHEET VECTORS -->
+    <!-- LEFT SIDEBAR -->
     <aside class="sidebar">
         <div class="sidebar-user" id="sidebar-username">
             Username
