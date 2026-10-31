@@ -151,9 +151,14 @@ a {
 /* SETTINGS DROPDOWN IN OPPOSITE CORNER */
 .nav-settings-container {
     position: relative;
-    margin-left: auto; /* Pushes to the far right opposite corner */
+    /* The account area pushes this gear to the far right. */
+    margin-left: 0;
     display: flex;
     align-items: center;
+}
+
+.nav-settings-container[hidden] {
+    display: none !important;
 }
 
 .nav-settings-btn {
@@ -855,16 +860,32 @@ a {
 const settingsToggle = document.getElementById('settings-menu-toggle');
 const settingsDropdown = document.getElementById('settings-dropdown');
 
-settingsToggle.addEventListener('click', (e) => {
-    e.stopPropagation();
-    settingsDropdown.classList.toggle('show');
-});
+if (settingsToggle && settingsDropdown) {
+    settingsToggle.setAttribute('aria-expanded', 'false');
 
-window.addEventListener('click', () => {
-    if (settingsDropdown.classList.contains('show')) {
-        settingsDropdown.classList.remove('show');
-    }
-});
+    settingsToggle.addEventListener('click', (event) => {
+        event.stopPropagation();
+        const isOpen = settingsDropdown.classList.toggle('show');
+        settingsToggle.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    // Close only when clicking outside the settings container.
+    document.addEventListener('click', (event) => {
+        const settingsContainer = document.getElementById('nav-settings-container');
+        if (settingsContainer && !settingsContainer.contains(event.target)) {
+            settingsDropdown.classList.remove('show');
+            settingsToggle.setAttribute('aria-expanded', 'false');
+        }
+    });
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+            settingsDropdown.classList.remove('show');
+            settingsToggle.setAttribute('aria-expanded', 'false');
+            settingsToggle.focus();
+        }
+    });
+}
 
 // Logout action handler
 document.getElementById('logout-link').addEventListener('click', async (e) => {
@@ -885,6 +906,7 @@ document.getElementById('logout-link').addEventListener('click', async (e) => {
     const accountUsername = document.getElementById('account-username');
     const accountUsernameNav = document.getElementById('account-username-nav');
     const sidebarUsername = document.getElementById('sidebar-username');
+    const profilePicture = document.getElementById('profile-picture');
 
     try {
         const response = await fetch('/api/me', {
@@ -912,6 +934,29 @@ document.getElementById('logout-link').addEventListener('click', async (e) => {
 
         accountUsernameNav.href = '/profile?username=' + encodeURIComponent(user.username);
         document.getElementById('urabux-balance').textContent = user.urabux || '0';
+
+        // Load the user's saved profile picture, with a safe local fallback.
+        const fallbackPicture = '/DefaultHeadshot.png';
+        profilePicture.onerror = function () {
+            this.onerror = null;
+            this.src = fallbackPicture;
+        };
+
+        const pfpUrl = typeof user.pfp_url === 'string' ? user.pfp_url.trim() : '';
+        if (pfpUrl) {
+            try {
+                const parsedPfpUrl = new URL(pfpUrl, window.location.origin);
+                if (parsedPfpUrl.protocol === 'https:' || parsedPfpUrl.protocol === 'http:') {
+                    profilePicture.src = parsedPfpUrl.href;
+                } else {
+                    profilePicture.src = fallbackPicture;
+                }
+            } catch (_) {
+                profilePicture.src = fallbackPicture;
+            }
+        } else {
+            profilePicture.src = fallbackPicture;
+        }
 
         loginButtons.hidden = true;
         accountMenu.hidden = false;
