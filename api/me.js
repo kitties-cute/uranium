@@ -25,7 +25,7 @@ module.exports = async function handler(req, res) {
     const { data: user, error } = await supabase
       .from("uranium_users")
       .select(
-        "id, username, urabux, avatardata, gender, profile_about, email, pfp_url"
+        "id, username, urabux, avatardata, gender, profile_about, profile_status, birthday, created_at, email, pfp_url"
       )
       .eq("id", session.sub)
       .maybeSingle();
