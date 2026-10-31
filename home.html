@@ -747,7 +747,7 @@ a {
             <!-- PROFILE GREETING HEADER -->
             <div class="profile-header-card">
                 <div class="avatar-frame">
-                    <img src="/DefaultHeadshot.png" alt="Avatar Thumbnail">
+                    <img id="profile-picture" src="/DefaultHeadshot.png" alt="Avatar Thumbnail">
                 </div>
                 <div>
                     <h1 class="user-greeting">Hello, <span id="account-username">User</span>!</h1>
@@ -937,25 +937,27 @@ document.getElementById('logout-link').addEventListener('click', async (e) => {
 
         // Load the user's saved profile picture, with a safe local fallback.
         const fallbackPicture = '/DefaultHeadshot.png';
-        profilePicture.onerror = function () {
-            this.onerror = null;
-            this.src = fallbackPicture;
-        };
+        if (profilePicture) {
+            profilePicture.onerror = function () {
+                this.onerror = null;
+                this.src = fallbackPicture;
+            };
 
-        const pfpUrl = typeof user.pfp_url === 'string' ? user.pfp_url.trim() : '';
-        if (pfpUrl) {
-            try {
-                const parsedPfpUrl = new URL(pfpUrl, window.location.origin);
-                if (parsedPfpUrl.protocol === 'https:' || parsedPfpUrl.protocol === 'http:') {
-                    profilePicture.src = parsedPfpUrl.href;
-                } else {
+            const pfpUrl = typeof user.pfp_url === 'string' ? user.pfp_url.trim() : '';
+            if (pfpUrl) {
+                try {
+                    const parsedPfpUrl = new URL(pfpUrl, window.location.origin);
+                    if (parsedPfpUrl.protocol === 'https:' || parsedPfpUrl.protocol === 'http:') {
+                        profilePicture.src = parsedPfpUrl.href;
+                    } else {
+                        profilePicture.src = fallbackPicture;
+                    }
+                } catch (_) {
                     profilePicture.src = fallbackPicture;
                 }
-            } catch (_) {
+            } else {
                 profilePicture.src = fallbackPicture;
             }
-        } else {
-            profilePicture.src = fallbackPicture;
         }
 
         loginButtons.hidden = true;
