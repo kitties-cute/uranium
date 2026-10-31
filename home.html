@@ -24,6 +24,39 @@ a {
     color: inherit;
 }
 
+/* ==========================================
+   SPRITESHEET SYSTEM (mainsheet.svg)
+   ========================================== */
+.icon-sprite {
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+    background-image: url('/mainsheet.svg');
+    background-repeat: no-repeat;
+    background-size: 56px auto; /* 2 columns: default (left 0), active/hover (left -28px) */
+    vertical-align: middle;
+}
+
+/* Row Positions for Each Sidebar Icon */
+.icon-search    { background-position: 0 0; }
+.icon-home      { background-position: 0 -28px; }
+.icon-profile   { background-position: 0 -56px; }
+.icon-messages  { background-position: 0 -84px; }
+.icon-friends   { background-position: 0 -112px; }
+.icon-avatar    { background-position: 0 -140px; }
+.icon-inventory { background-position: 0 -168px; }
+.icon-trade     { background-position: 0 -196px; }
+.icon-groups    { background-position: 0 -224px; }
+.icon-rules     { background-position: 0 -252px; }
+.icon-catalog   { background-position: 0 -308px; }
+.icon-promocodes{ background-position: 0 -364px; }
+
+/* Active / Hover States (shifts left by 28px to pick colored sprite) */
+.sidebar-link:hover .icon-sprite,
+.sidebar-link.active .icon-sprite {
+    background-position-x: -28px;
+}
+
 /* TOP NAVBAR */
 .navbar {
     height: 40px;
@@ -64,7 +97,7 @@ a {
 }
 
 .nav-links a:hover {
-    opacity: 0.8;
+    opacity: 0.85;
 }
 
 .search-container {
@@ -86,14 +119,20 @@ a {
 
 .search-btn {
     position: absolute;
-    right: 5px;
+    right: 3px;
     top: 50%;
     transform: translateY(-50%);
     background: none;
     border: none;
     cursor: pointer;
-    color: #666;
-    font-size: 12px;
+    width: 22px;
+    height: 22px;
+}
+
+.search-btn .icon-sprite {
+    width: 20px;
+    height: 20px;
+    background-size: 40px auto;
 }
 
 .nav-user-area {
@@ -123,7 +162,7 @@ a {
     display: flex;
     align-items: center;
     gap: 4px;
-    background: rgba(0,0,0,0.15);
+    background: rgba(0,0,0,0.18);
     padding: 3px 8px;
     border-radius: 12px;
     font-weight: bold;
@@ -150,7 +189,7 @@ a {
 }
 
 .sidebar {
-    width: 140px;
+    width: 155px;
     background: #f2f2f2;
     border-right: 1px solid #ccc;
     padding: 10px 0;
@@ -158,12 +197,12 @@ a {
 }
 
 .sidebar-user {
-    padding: 0 12px 10px 12px;
+    padding: 0 15px 10px 15px;
     font-weight: bold;
-    font-size: 13px;
-    color: #444;
+    font-size: 14px;
+    color: #333;
     border-bottom: 1px solid #e0e0e0;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
     word-break: break-word;
 }
 
@@ -175,20 +214,16 @@ a {
 .sidebar-link {
     display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 7px 15px;
+    gap: 10px;
+    padding: 5px 15px;
     font-size: 13px;
     color: #555;
+    font-weight: 600;
 }
 
 .sidebar-link:hover, .sidebar-link.active {
     background: #e5e5e5;
     color: #000;
-}
-
-.sidebar-link .icon {
-    width: 16px;
-    text-align: center;
 }
 
 /* MAIN CONTENT LAYOUT */
@@ -284,7 +319,6 @@ a {
 .dashboard-section {
     background: #fff;
     border: 1px solid #ccc;
-    border-radius: 0;
     padding: 15px;
     margin-bottom: 20px;
 }
@@ -465,7 +499,9 @@ a {
 
     <div class="search-container">
         <input type="text" class="search-input" placeholder="Search">
-        <button class="search-btn">🔍</button>
+        <button class="search-btn" aria-label="Search">
+            <span class="icon-sprite icon-search"></span>
+        </button>
     </div>
 
     <!-- LOGGED OUT -->
@@ -493,21 +529,39 @@ a {
 <!-- PAGE CONTAINER -->
 <div class="page-container">
 
-    <!-- LEFT SIDEBAR -->
+    <!-- LEFT SIDEBAR WITH SPRITES -->
     <aside class="sidebar">
         <div class="sidebar-user" id="sidebar-username">
             Username
         </div>
         <nav class="sidebar-nav">
-            <a href="/home" class="sidebar-link active"><span class="icon">🏠</span> Home</a>
-            <a href="/profile" class="sidebar-link"><span class="icon">👤</span> Profile</a>
-            <a href="#friends" class="sidebar-link"><span class="icon">👥</span> Friends</a>
-            <a href="#avatar" class="sidebar-link"><span class="icon">👕</span> Avatar</a>
-            <a href="#inventory" class="sidebar-link"><span class="icon">🎒</span> Inventory</a>
-            <a href="#trade" class="sidebar-link"><span class="icon">🔄</span> Trade</a>
-            <a href="#groups" class="sidebar-link"><span class="icon">👨‍👩‍👧‍👦</span> Groups</a>
-            <a href="#rules" class="sidebar-link"><span class="icon">📜</span> Rules</a>
-            <a href="#promocodes" class="sidebar-link"><span class="icon">🏷️</span> Promocodes</a>
+            <a href="/home" class="sidebar-link active">
+                <span class="icon-sprite icon-home"></span> Home
+            </a>
+            <a href="/profile" class="sidebar-link">
+                <span class="icon-sprite icon-profile"></span> Profile
+            </a>
+            <a href="#friends" class="sidebar-link">
+                <span class="icon-sprite icon-friends"></span> Friends
+            </a>
+            <a href="#avatar" class="sidebar-link">
+                <span class="icon-sprite icon-avatar"></span> Avatar
+            </a>
+            <a href="#inventory" class="sidebar-link">
+                <span class="icon-sprite icon-inventory"></span> Inventory
+            </a>
+            <a href="#trade" class="sidebar-link">
+                <span class="icon-sprite icon-trade"></span> Trade
+            </a>
+            <a href="#groups" class="sidebar-link">
+                <span class="icon-sprite icon-groups"></span> Groups
+            </a>
+            <a href="#rules" class="sidebar-link">
+                <span class="icon-sprite icon-rules"></span> Rules
+            </a>
+            <a href="#promocodes" class="sidebar-link">
+                <span class="icon-sprite icon-promocodes"></span> Promocodes
+            </a>
         </nav>
     </aside>
 
