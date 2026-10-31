@@ -29,15 +29,16 @@ a {
    ========================================== */
 .icon-sprite {
     display: inline-block;
-    width: 28px;
-    height: 28px;
+    width: 24px;
+    height: 24px;
     background-image: url('/mainsheet.svg');
     background-repeat: no-repeat;
-    background-size: 56px auto; /* 2 columns: default (left 0), active/hover (left -28px) */
+    background-size: 48px auto; /* 2 columns: Column 1 = Outlined, Column 2 = Hover/Colored */
+    background-position: 0 0;
     vertical-align: middle;
 }
 
-/* Row Positions for Each Sidebar Icon */
+/* Row-by-Row Sprite Alignments */
 .icon-search    { background-position: 0 0; }
 .icon-home      { background-position: 0 -28px; }
 .icon-profile   { background-position: 0 -56px; }
@@ -48,13 +49,12 @@ a {
 .icon-trade     { background-position: 0 -196px; }
 .icon-groups    { background-position: 0 -224px; }
 .icon-rules     { background-position: 0 -252px; }
-.icon-catalog   { background-position: 0 -308px; }
-.icon-promocodes{ background-position: 0 -364px; }
+.icon-promocodes{ background-position: 0 -308px; }
 
-/* Active / Hover States (shifts left by 28px to pick colored sprite) */
+/* HOVER / ACTIVE STATE: Shift horizontally to the colored variant column */
 .sidebar-link:hover .icon-sprite,
 .sidebar-link.active .icon-sprite {
-    background-position-x: -28px;
+    background-position-x: -24px !important;
 }
 
 /* TOP NAVBAR */
@@ -127,12 +127,19 @@ a {
     cursor: pointer;
     width: 22px;
     height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .search-btn .icon-sprite {
-    width: 20px;
-    height: 20px;
-    background-size: 40px auto;
+    width: 18px;
+    height: 18px;
+    background-size: 36px auto;
+}
+
+.search-btn:hover .icon-sprite {
+    background-position-x: -18px;
 }
 
 .nav-user-area {
@@ -146,16 +153,6 @@ a {
 .user-age-bracket {
     font-size: 11px;
     opacity: 0.9;
-}
-
-.nav-icon-btn {
-    cursor: pointer;
-    font-size: 16px;
-    opacity: 0.9;
-}
-
-.nav-icon-btn:hover {
-    opacity: 1;
 }
 
 .urabux-pill {
@@ -215,10 +212,11 @@ a {
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 5px 15px;
+    padding: 6px 15px;
     font-size: 13px;
     color: #555;
     font-weight: 600;
+    transition: background-color 0.1s, color 0.1s;
 }
 
 .sidebar-link:hover, .sidebar-link.active {
@@ -516,9 +514,6 @@ a {
             Username
         </a>
         <span class="user-age-bracket">13+</span>
-        <span class="nav-icon-btn">📋</span>
-        <span class="nav-icon-btn">⚙️</span>
-
         <div class="urabux-pill">
             <span class="urabux-icon">U</span>
             <span id="urabux-balance">0</span>
@@ -529,7 +524,7 @@ a {
 <!-- PAGE CONTAINER -->
 <div class="page-container">
 
-    <!-- LEFT SIDEBAR WITH SPRITES -->
+    <!-- LEFT SIDEBAR -->
     <aside class="sidebar">
         <div class="sidebar-user" id="sidebar-username">
             Username
