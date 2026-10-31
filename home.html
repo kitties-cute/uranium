@@ -569,8 +569,8 @@ a {
         </a>
         <span class="user-age-bracket">13+</span>
         <div class="urabux-pill">
-            <span class="urabux-icon">U</span>
-            <span id="urabux-balance">0</span>
+            <span class="urabux-icon">U$</span>
+            <span id="urabux-balance">?</span>
         </div>
     </div>
 
@@ -933,7 +933,7 @@ document.getElementById('logout-link').addEventListener('click', async (e) => {
         sidebarUsername.textContent = user.username;
 
         accountUsernameNav.href = '/profile?username=' + encodeURIComponent(user.username);
-        document.getElementById('urabux-balance').textContent = user.urabux || '0';
+        document.getElementById('urabux-balance').textContent = user.urabux || '?';
 
         // Load the user's saved profile picture, with a safe local fallback.
         const fallbackPicture = '/DefaultHeadshot.png';
