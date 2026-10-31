@@ -933,7 +933,7 @@ document.getElementById('logout-link').addEventListener('click', async (e) => {
         sidebarUsername.textContent = user.username;
 
         accountUsernameNav.href = '/profile?username=' + encodeURIComponent(user.username);
-        document.getElementById('urabux-balance').textContent = user.urabux || '?';
+        document.getElementById('urabux-balance').textContent = user.urabux;
 
         // Load the user's saved profile picture, with a safe local fallback.
         const fallbackPicture = '/DefaultHeadshot.png';
